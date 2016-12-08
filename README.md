@@ -67,22 +67,29 @@ The resulted 96 "images" of 4x10 "pixels" are flattened out and followed by 3 fu
 
 The batch size is set to 32 and we are going to use Adam optimizer.  The validation data takes 5% of the training samples.
 
-On track1 convergence happens after 2 epochs while track2 is converging after 9 epochs.  The huge difference
+On track1 convergence happens after 2 epochs while track2 is converging after 9 epochs.  The huge difference is because on track1 we are going on circle, the scenery is repeating and we have less spread in speed and steering angle values.
 
 
 ### Running Drive Predictions
 
+Before steering angle and speed predictions we are doing the same image preprocessing as done for model training.  
+The predicted steering angle can be sent directly to the simulator.  The predicted speed is transformed back to the range [10..30]; it is then compared to the car actual speed and throttle 0 or 1 is sent to the simulator according to the comparison result.
+
 Use command 
 
-python drive.py model.json
+```python drive.py model.json```
 
 to start autonomous driving in "classical" mode  with full throttle and maximum speed.
 
 Use command
 
-python drive.py model.json -s
+```python drive.py model.json -s```
 
 to start autonomous driving with steering and speed control.
+
+To get autonomous driving on track2 use model2 instead of model, e.g.:
+
+```python drive.py model2.json```
 
 
 
